@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adam DEBYSER - Portfolio Professionnel</title>
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #121824;
+            --card-bg: #1e2640;
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary: #10b981; /* Vert Émeraude */
+            --primary-hover: #059669;
+            --secondary: #374151;
+            --secondary-hover: #4b5563;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(18, 24, 36, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* --- SECTIONS SPACING --- */
+        section {
+            padding: 6rem 2rem 3rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        /* --- HERO SECTION --- */
+        #accueil {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #accueil h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        #accueil h1 span {
+            color: var(--primary);
+        }
+
+        #accueil .subtitle {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .formation-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .formation-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .formation-link svg {
+            margin-left: 6px;
+            fill: currentColor;
+        }
+
+        #accueil .pitch {
+            max-width: 750px;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #d1d5db;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #121824;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--text-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- CHIFFRES CLÉS REVISITÉS --- */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            margin-top: 3rem;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* --- COMPÉTENCES (BADGES) --- */
+        .skills-section {
+            margin-top: 3.5rem;
+            background-color: rgba(255, 255, 255, 0.02);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .skills-main-title {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skills-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .skills-category h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.75rem;
+            color: #e5e7eb;
+        }
+
+        .badges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .badge {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #d1d5db;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- PROJETS (GRID) --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- PHILOSOPHIE / VISION --- */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .vision-card {
+            background-color: var(--card-bg);
+            border-top: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .vision-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-color);
+        }
+
+        .vision-card p {
+            color: #d1d5db;
+            font-size: 0.95rem;
+        }
+
+        /* --- CONTACT --- */
+        .contact-box {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 2.5rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            #accueil h1 { font-size: 2.2rem; }
+            #accueil .subtitle { font-size: 1.1rem; }
+            nav { display: none; }
+            .contact-links { flex-direction: column; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- BARRE DE NAVIGATION -->
+    <header>
+        <div class="nav-container">
+            <!-- Ta photo est maintenant ici, alignée avec ton nom -->
+            <a href="#accueil" class="logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="C:\Users\adebyser\Desktop\adebyser_LThumb.jpg" alt="Adam DEBYSER" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary);">
+                <span>Adam DEBYSER</span>
+            </a>
+            <nav>
+                <a href="#accueil">Accueil</a>
+                <a href="#projets">Projets</a>
+                <a href="#philosophie">Ma Vision</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+<!-- ACCUEIL / HERO -->
+    <section id="accueil">
+        <h1>Bonjour, je suis Adam DEBYSER</h1>
+        <div class="subtitle">Chef de Projet Durable et Qualité</div>
+        
+        <!-- LIEN VERS MASTER FGES -->
+        <a href="https://www.fges.fr/formations/master-management-du-developpement-durable/" target="_blank" class="formation-link">
+            Master Management du Développement Durable — FGES
+            <svg width="12" height="12" viewBox="0 0 24 24"><path d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.97 7 2 2 6.952-7 4.011 4v-10z"/></svg>
+        </a>
+
+        <p class="pitch">
+            Récemment diplômé du Master de la FGES, mon parcours universitaire et technique m'a apporté une solide vision stratégique des enjeux de transition. Sur le terrain, j'allie la rigueur de la gestion de patrimoine immobilier public à l'exigence des démarches d'amélioration continue et de management de la qualité. Mon objectif ? Mettre mon énergie, mon esprit d'analyse et mes compétences opérationnelles au service de projets qui font bouger les lignes.
+        </p>
+        
+        <div class="btn-group">
+            <a href="#projets" class="btn btn-primary">Découvrir mes projets</a>
+            <a href="CV DEBYSER Adam.pdf" download class="btn btn-secondary">Télécharger mon CV (PDF)</a>
+        </div>
+
+        <!-- CHIFFRES CLÉS -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Ans d'énergie et d'agilité</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Diplômes d'État Supérieurs (Licence TG2D & Master MDD)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Stages significatifs sur le terrain</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Alternance d'envergure à la MEL</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets">
+        <h2 class="section-title">Projets Marquants</h2>
+        <div class="projects-grid">
+            
+            <!-- Projet 1 -->
+            <div class="project-card">
+                <span class="project-tag">Patrimoine & Énergie</span>
+                <h3>Gestion Fluides & Contrats MEL</h3>
+                <p>
+                    Pilotage global de l'intégralité du patrimoine immobilier de la MEL. Responsable du suivi de facturation, du contrôle budgétaire et de l'optimisation énergétique de l'ensemble des contrats (RCU, électricité, gaz, eau) via des outils de gestion comme 
+                    <a href="https://www.deepki.com/fr/" target="_blank" class="formation-link" style="margin-bottom: 0; display: inline-flex; align-items: center; gap: 3px;">
+                        deepki
+                        <svg width="12" height="12" viewBox="0 0 24 24"><path d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.97 7 2 2 6.952-7 4.011 4v-10z"/></svg>
+                    </a>.
+                </p>
+            </div>
+
+            <!-- Projet 2 -->
+<!-- Projet 2 -->
+            <div class="project-card">
+                <span class="project-tag">Projet Complexe</span>
+                <h3>AMI Champ Libre & MGP MEL2</h3>
+                <p>
+                    Conduite d'un Appel à Manifestation d'Intérêt (AMI) sur la parcelle 
+                    <a href="https://www.lillemetropole.fr/communique-de-presse/champ-libre-la-mel-transforme-son-foncier-pour-creer-un-nouveau-quartier-mixte" target="_blank" class="formation-link" style="margin-bottom: 0; display: inline-flex; align-items: center; gap: 3px;">
+                        "Champ Libre"
+                        <svg width="12" height="12" viewBox="0 0 24 24"><path d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.97 7 2 2 6.952-7 4.011 4v-10z"/></svg>
+                    </a> 
+                    et supervision du Marché Global de Performance (MGP) dédié à l'extension d'envergure du siège métropolitain 
+                    (<a href="https://www.lillemetropole.fr/communique-de-presse/mel2-un-projet-immobilier-strategique-et-durable-pour-preparer-2030" target="_blank" class="formation-link" style="margin-bottom: 0; display: inline-flex; align-items: center; gap: 3px;">
+                        MEL2
+                        <svg width="12" height="12" viewBox="0 0 24 24"><path d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.97 7 2 2 6.952-7 4.011 4v-10z"/></svg>
+                    </a>).
+                </p>
+            </div>
+
+            <div class="project-card">
+                <span class="project-tag">Qualité & SMQ</span>
+                <h3>Transition ISO 9001 (Version 2026)</h3>
+                <p>
+                    Création d'un nouveau Système de Management de la Qualité pour les Ruches d'Entreprises de la MEL. Accompagnement et formation quotidienne de 10 collaborateurs à la révision des processus, cartographies et gestion des risques en capitalisant sur la norme NF 248 et les exigences de la certification 
+                    <a href="https://certification.afnor.org/qualite/certification-afaq-iso-9001#:~:text=La%20norme%20ISO%209001%20est,co%C3%BBts%20et%20gagner%20en%20comp%C3%A9titivit%C3%A9." target="_blank" class="formation-link" style="margin-bottom: 0; display: inline-flex; align-items: center; gap: 3px;">
+                        ISO 9001
+                        <svg width="12" height="12" viewBox="0 0 24 24"><path d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.97 7 2 2 6.952-7 4.011 4v-10z"/></svg>
+                    </a>.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- SECTION COMPÉTENCES DÉVELOPPÉES AJUSTÉE -->
+        <div class="skills-section">
+            <div class="skills-main-title">Compétences développées</div>
+            
+            <div class="skills-category">
+                <h4>Management de la Qualité & RSE</h4>
+                <div class="badges-grid">
+                    <span class="badge">ISO 9001 (Version 2026)</span>
+                    <span class="badge">Référentiel NF 248</span>
+                    <span class="badge">Cartographie des processus</span>
+                    <span class="badge">Analyse des risques & opportunités</span>
+                    <span class="badge">Stratégie RSE</span>
+                    <span class="badge">Amélioration continue</span>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h4>Gestion Technique & Fluides</h4>
+                <div class="badges-grid">
+                    <span class="badge">Optimisation énergétique</span>
+                    <span class="badge">Contrats multi-fluides (RCU, Élec, Gaz, Eau)</span>
+                    <span class="badge">Suivi de facturation multi-sites</span>
+                    <span class="badge">Contrôle budgétaire</span>
+                    <span class="badge">Analyse de projets publics complexes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="associatif" style="padding-top: 3rem; padding-bottom: 0;">
+        <h2 class="section-title">Engagement Associatif</h2>
+        <div class="vision-grid">
+            <div class="vision-card">
+                <h3>Projet Roger Salengros (Armentières)</h3>
+                <p>
+    Porté par l'envie partagée de transmettre et de sensibiliser, j'ai co-organisé et animé, aux côtés de mes camarades 
+    <a href="https://www.linkedin.com/in/jules-portier-130b012a6/" target="_blank" class="formation-link" style="margin-bottom: 0; display: inline; font-weight: 600;">Jules PORTIER</a> 
+    et 
+    <a href="https://www.linkedin.com/in/eden-aboumon-9610b1253/" target="_blank" class="formation-link" style="margin-bottom: 0; display: inline; font-weight: 600;">Eden ABOUMON</a>, 
+    une demi-journée éco-citoyenne inoubliable auprès d'une classe de CM2. Nous avons conçu ensemble un module théorique de 45 minutes pour éveiller leur conscience aux enjeux des pollutions, avant d'aller dans le stade attenant avec un jeu de l'oie géant en extérieur. Voir ces enfants s'approprier les éco-gestes de manière aussi ludique et passionnée a été notre plus belle réussite. Pour clore ce moment fort en complicité, nous avons pris le temps d'écouter leurs questions lors d'un échange sincère, avant de leur offrir à chacun un stylo 4 couleurs et de partager un goûter simple et chaleureux, préparé intégralement maison.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- PHILOSOPHIE / VISION -->
+    <section id="philosophie">
+        <h2 class="section-title">Ma Vision du Travail</h2>
+        <div class="vision-grid">
+            <div class="vision-card">
+                <h3>Le sens avant tout</h3>
+                <p>Mon moteur principal est l'utilité collective. Savoir que mon travail sert directement le bien public, le territoire et le contribuable donne une vraie valeur à mon engagement quotidien. J'ai besoin que mes missions s'inscrivent dans un cadre éthique social et environnementale.</p>
+            </div>
+            <div class="vision-card">
+                <h3>Engagement </h3>
+                <p>Quand je m'épanouis, je fonctionne à l'enthousiasme : proactif et force de proposition. Pour autant, je prône un détachement sain : je donne mon maximum sur le terrain, mais je refuse de me rendre malade si un projet échoue malgré mes efforts collectifs.</p>
+            </div>
+            <div class="vision-card">
+                <h3>Agilité & adaptabilité</h3>
+                <p>Ma force réside dans ma capacité à communiquer et à m'adapter vite. Face à l'inconnu, je sais me former de façon autonome, activer mon réseau et fédérer des acteurs variés pour monter très rapidement en compétences.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="section-title">Me Contacter</h2>
+        <div class="contact-box">
+            <p>Un projet de transition, un besoin en amélioration continue ou une opportunité de collaboration ? Échangeons !</p>
+            <div class="contact-links">
+                <a href="mailto:Adam.byreeds@gmail.com" class="contact-link">Adam.byreeds@gmail.com</a>
+                <a href="tel:0687834046" class="contact-link">06 87 83 40 46</a>
+                <a href="https://linkedin.com" target="_blank" class="contact-link">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 - Conçu par DEBYSER Adam.</p>
+    </footer>
+
+</body>
+</html>
